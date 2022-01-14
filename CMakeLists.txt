@@ -12,7 +12,7 @@ set(WWW_INSTALL_DIR "/var/www")
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/files/astroid DESTINATION ${CONFIG_INSTALL_DIR}/nginx/sites-available)
-        install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/files/astroid_ssd DESTINATION ${CONFIG_INSTALL_DIR}/nginx/sites-available)
+        install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/files/astroid_ssl DESTINATION ${CONFIG_INSTALL_DIR}/nginx/sites-available)
 	install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/files/astroid.crt DESTINATION ${CONFIG_INSTALL_DIR}/ssl)
 	install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/files/astroid.key DESTINATION ${CONFIG_INSTALL_DIR}/ssl)
         install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/files/html DESTINATION ${WWW_INSTALL_DIR})
