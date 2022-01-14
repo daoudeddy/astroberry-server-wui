@@ -5,8 +5,8 @@ upstream root {
 server {
     listen 443;
 
-    ssl_certificate           /etc/ssl/astroberry.crt;
-    ssl_certificate_key       /etc/ssl/astroberry.key;
+    ssl_certificate           /etc/ssl/astroid.crt;
+    ssl_certificate_key       /etc/ssl/astroid.key;
 
     ssl on;
     ssl_session_cache  builtin:1000  shared:SSL:10m;

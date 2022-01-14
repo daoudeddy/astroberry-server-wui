@@ -1,14 +1,14 @@
 #!/bin/bash
-# postrm script for astroberry-server-wui
+# postrm script for astroid-server-wui
 
-# disable astroberry site
-if [ "$1" = "remove" -o "$1" = "purge" ] && [ -e /etc/nginx/sites-enabled/astroberry ]; then
-    rm -f /etc/nginx/sites-enabled/astroberry
+# disable astroid site
+if [ "$1" = "remove" -o "$1" = "purge" ] && [ -e /etc/nginx/sites-enabled/astroid ]; then
+    rm -f /etc/nginx/sites-enabled/astroid
 fi
 
-if [ "$1" = "remove" -o "$1" = "purge" ] && [ -e /etc/nginx/sites-enabled/astroberry_ssl ]
+if [ "$1" = "remove" -o "$1" = "purge" ] && [ -e /etc/nginx/sites-enabled/astroid_ssl ]
 then
-    rm -f /etc/nginx/sites-enabled/astroberry_ssl
+    rm -f /etc/nginx/sites-enabled/astroid_ssl
 fi
 
 # reactivate default site for nginx
@@ -17,7 +17,7 @@ then
     ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 fi
 
-# remove astroberry version file
+# remove astroid version file
 if [ "$1" = "remove" -o "$1" = "purge" ] && [ -e /var/www/html/version.html ]; then
     rm -f /var/www/html/version.html
 fi

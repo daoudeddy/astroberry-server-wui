@@ -3,7 +3,7 @@
 
 # set password for VNC remote desktop
 if [ "$1" = "configure" ] && [ ! -e /root/.vnc/config.d/vncserver-x11 ] && [ -z "$(grep '^Password=ce77cd632e94ca19845f7deae77a1828$' /root/.vnc/config.d/vncserver-x11)" ]; then
-    echo "astroberry" | vncpasswd -service
+    echo "astroid" | vncpasswd -service
     echo "Authentication=VncAuth" >> /root/.vnc/config.d/vncserver-x11
 fi
 if [ "$1" = "configure" ] && [ ! -e /root/.vnc/config.d/vncserver-x11 ] && [ -z "$(grep 'Authentication=VncAuth' /root/.vnc/config.d/vncserver-x11)" ]; then
@@ -11,10 +11,10 @@ if [ "$1" = "configure" ] && [ ! -e /root/.vnc/config.d/vncserver-x11 ] && [ -z 
 fi
 
 # set log directory access rights
-if [ "$1" = "configure" ] && [ ! -d /var/log/astroberry ] && [ -n "$(cut -d: -f1 /etc/passwd | grep '^astroberry$')" ]; then
-	mkdir /var/log/astroberry
-	chmod 750 /var/log/astroberry
-	chown astroberry:adm /var/log/astroberry
+if [ "$1" = "configure" ] && [ ! -d /var/log/astroid ] && [ -n "$(cut -d: -f1 /etc/passwd | grep '^astroid$')" ]; then
+	mkdir /var/log/astroid
+	chmod 750 /var/log/astroid
+	chown astroid:adm /var/log/astroid
 fi
 
 # add required python packages
@@ -29,11 +29,11 @@ if [ "$1" = "configure" ] && [ -n "$(which pip3)" ] && [ -z "$(pip3 list | grep 
 fi
 
 # create symbolic links
-if [ "$1" = "configure" ] && [ ! -e /etc/nginx/sites-enabled/astroberry ] && [ -e /etc/nginx/sites-available/astroberry ]; then
-	ln -sf /etc/nginx/sites-available/astroberry /etc/nginx/sites-enabled/
+if [ "$1" = "configure" ] && [ ! -e /etc/nginx/sites-enabled/astroid ] && [ -e /etc/nginx/sites-available/astroid ]; then
+	ln -sf /etc/nginx/sites-available/astroid /etc/nginx/sites-enabled/
 fi
-if [ "$1" = "configure" ] && [ ! -e /etc/nginx/sites-enabled/astroberry_ssl ] && [ -e /etc/nginx/sites-available/astroberry_ssl ]; then
-	ln -sf /etc/nginx/sites-available/astroberry_ssl /etc/nginx/sites-enabled/
+if [ "$1" = "configure" ] && [ ! -e /etc/nginx/sites-enabled/astroid ] && [ -e /etc/nginx/sites-available/astroid_ssl ]; then
+	ln -sf /etc/nginx/sites-available/astroid /etc/nginx/sites-enabled/
 fi
 
 # remove default site for nginx
@@ -41,9 +41,9 @@ if [ "$1" = "configure" ] && [ -e /etc/nginx/sites-enabled/default ]; then
 	rm -rf /etc/nginx/sites-enabled/default
 fi
 
-# link astroberry version file
-if [ "$1" = "configure" ] && [ ! -e /var/www/html/version.html ] && [ -e /etc/astroberry.version ]; then
-	ln -sf /etc/astroberry.version /var/www/html/version.html
+# link astroid version file
+if [ "$1" = "configure" ] && [ ! -e /var/www/html/version.html ] && [ -e /etc/astroid.version ]; then
+	ln -sf /etc/astroid.version /var/www/html/version.html
 fi
 
 if [ "$1" = "configure" ]; then
@@ -59,7 +59,7 @@ if [ "$1" = "configure" ]; then
 	systemctl enable novnc.service
 	systemctl enable nginx.service
 
-	# Reload astroberry services
+	# Reload astroid services
 	systemctl restart vncserver-x11-serviced.service
 	systemctl restart gpspanel.service
 	systemctl restart astropanel.service
